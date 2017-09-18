@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -38,4 +39,4 @@ userSchema.methods.comparePassword = function comparePass(candidatePassword, nex
 
 const User = mongoose.model('User', userSchema)
 
-module.exports = User
+export default User
