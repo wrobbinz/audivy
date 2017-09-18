@@ -1,0 +1,35 @@
+{
+  "name": "audivy",
+  "version": "1.0.0",
+  "description": "Audivy is an audio streaming platform that allows you to listen to music, explore sounds, tune into live streams, or create your own",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "nodemon --exec npm run babel-node -- src/app.js",
+    "babel-node": "babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wrobbinz",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.1",
+    "cookie-session": "^1.3.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "jsonwebtoken": "^8.0.1",
+    "mongoose": "^4.11.11",
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.7.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
+    "mocha": "^3.5.3",
+    "supertest": "^3.0.0"
+  }
+}
