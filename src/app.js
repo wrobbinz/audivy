@@ -10,7 +10,6 @@ import userRoutes from './routes/user'
 
 const app = express()
 app.use(morgan('dev'))
-app.use(express.static(`${__dirname}/public`))
 app.use(bodyParser.json())
 app.use(session({ secret: process.env.SECRET_KEY }))
 
