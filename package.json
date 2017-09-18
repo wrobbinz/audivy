@@ -31,5 +31,9 @@
     "eslint-plugin-react": "^7.3.0",
     "mocha": "^3.5.3",
     "supertest": "^3.0.0"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/wrobbinz/audivy.git"
   }
 }
