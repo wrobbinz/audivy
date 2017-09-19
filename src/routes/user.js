@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import db from '../models/db'
+import db from '../models/'
 import auth from '../middleware/auth'
 
 

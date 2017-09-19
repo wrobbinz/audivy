@@ -1,7 +1,7 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
 import {} from 'dotenv/config'
-import db from '../models/db'
+import db from '../models/'
 
 
 const router = express.Router()
@@ -32,7 +32,7 @@ router.post('/login', (req, res) => {
 router.post('/signup', (req, res) => {
   db.User.create(req.body).then((user) => {
     const token = jwt.sign({ user_id: user.id }, process.env.SECRET_KEY)
-    res.status(200).send({ token })
+    res.status(201).send({ token })
   })
 })
 
