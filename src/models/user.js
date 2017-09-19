@@ -39,4 +39,4 @@ userSchema.methods.comparePassword = function comparePass(candidatePassword, nex
 
 const User = mongoose.model('User', userSchema)
 
-module.exports = User;
+module.exports = User
