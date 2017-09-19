@@ -38,7 +38,6 @@ router.post('/signup', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.session.user_id = null
-  req.flash('message', 'logged out!')
   res.status(200).send({
     status: 200,
     message: 'Logged out',
