@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --exec npm run babel-node -- src/app.js",
     "babel-node": "babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require babel-polyfill --compilers js:babel-register -- ./src/test/*.js"
   },
   "author": "wrobbinz",
   "license": "ISC",
@@ -22,7 +22,10 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "eslint": "^4.7.0",
     "eslint-config-airbnb": "^15.1.0",
@@ -32,8 +35,8 @@
     "mocha": "^3.5.3",
     "supertest": "^3.0.0"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/wrobbinz/audivy.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wrobbinz/audivy.git"
   }
 }
