@@ -1,32 +1,32 @@
 import request from 'supertest'
-// import chai from 'chai'
+import chai from 'chai'
 import mongoose from 'mongoose'
-import db from '../models/db'
 import app from '../app'
+import db from '../models/'
 
 
-// const expect = chai.expect
-// const token = []
+const expect = chai.expect
 const auth = {}
+let token
 
 mongoose.Promise = Promise
 
 
 function loginUser(auth) {
   return (done) => {
+    function onResponse(err, res) {
+      auth.token = res.body.token
+      return done()
+    }
+
     request(app)
-      .post('/api/auth/login')
+      .post('/api/v1/auth/login')
       .send({
         username: 'test',
         password: 'secret',
       })
       .expect(200)
       .end(onResponse)
-
-    function onResponse(err, res) {
-      auth.token = res.body.token
-      return done()
-    }
   }
 }
 
@@ -48,16 +48,17 @@ afterEach((done) => {
 describe('POST /auth/signup', () => {
   it('responds with JSON when created', (done) => {
     request(app)
-      .post('/api/auth/signup')
+      .post('/api/v1/auth/signup')
       .send({ username: 'elie', password: 'secret' })
       .set('Accept', 'application/json')
       .expect(201, done)
   })
 })
+
 describe('POST /auth/login', () => {
   it('responds with JSON', (done) => {
     request(app)
-      .post('/api/auth/login')
+      .post('/api/v1/auth/login')
       .send({ username: 'test', password: 'secret' })
       .set('Accept', 'application/json')
       .expect(200, done)
@@ -67,7 +68,7 @@ describe('POST /auth/login', () => {
 describe('GET /users', () => {
   it('responds with JSON', (done) => {
     request(app)
-      .get('/api/users')
+      .get('/api/v1/users')
       .set('Authorization', `bearer: ${auth.token}`)
       .expect(200, done)
   })
@@ -76,7 +77,7 @@ describe('GET /users', () => {
 describe('GET /users/:id', () => {
   it('responds with JSON', (done) => {
     request(app)
-      .get(`/api/users/${auth.current_user.id}`)
+      .get(`/api/v1/users/${auth.current_user.id}`)
       .set('Authorization', `bearer: ${auth.token}`)
       .expect(200, done)
   })
@@ -85,7 +86,7 @@ describe('GET /users/:id', () => {
 describe('PATCH /users/:id', () => {
   it('responds with JSON', (done) => {
     request(app)
-      .patch(`/api/users/${auth.current_user.id}`)
+      .patch(`/api/v1/users/${auth.current_user.id}`)
       .send({
         username: 'bob',
       })
@@ -97,7 +98,7 @@ describe('PATCH /users/:id', () => {
 describe('DELETE /users/:id', () => {
   it('responds with JSON', (done) => {
     request(app)
-      .delete(`/api/users/${auth.current_user.id}`)
+      .delete(`/api/v1/users/${auth.current_user.id}`)
       .set('Authorization', `bearer: ${auth.token}`)
       .expect(204, done)
   })
