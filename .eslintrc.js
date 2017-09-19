@@ -8,5 +8,6 @@ module.exports = {
         it: true,
         beforeEach: true,
         afterEach: true,
-    }
-};
+    },
+    parser: 'babel-eslint'
+}
