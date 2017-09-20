@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import session from 'cookie-session'
+import helmet from 'helmet'
 import {} from 'dotenv/config'
 import authMiddleware from './middleware/auth'
 import authRoutes from './routes/auth'
@@ -9,6 +10,7 @@ import userRoutes from './routes/user'
 
 
 const app = express()
+app.use(helmet())
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(session({ secret: process.env.SECRET_KEY }))
