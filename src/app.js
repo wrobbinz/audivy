@@ -16,6 +16,9 @@ app.use(bodyParser.json())
 app.use(session({ secret: process.env.SECRET_KEY }))
 
 // Routes
+app.get('/', (req, res) => {
+  res.send('hi!')
+})
 app.use('/api/v1/user', authMiddleware.loginRequired, userRoutes)
 app.use('/api/v1/auth', authRoutes)
 
