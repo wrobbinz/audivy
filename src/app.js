@@ -21,9 +21,30 @@ app.get('/', (req, res) => {
 })
 app.use('/api/v1/user', authMiddleware.loginRequired, userRoutes)
 app.use('/api/v1/auth', authRoutes)
+// 404
+app.use((req, res, next) => {
+  const err = new Error('Not Found (404)')
+  err.status = 404
+  next(err)
+})
 
-app.get('/', (req, res) => {
-  res.send('his')
+// Error Handler: Development
+if (app.get('env') === 'development') {
+  app.use((err, req, res) => {
+    res.status(err.status || 500)
+    res.render('error', {
+      message: err.message,
+      error: err,
+    })
+  })
+}
+// Error Handler: Production
+app.use((err, req, res) => {
+  res.status(err.status || 500)
+  res.render('error', {
+    message: err.message,
+    error: {},
+  })
 })
 
 app.listen(6060, () => {
